@@ -81,40 +81,33 @@ const hotelSchema = new mongoose.Schema({
 });
 
 
-// hotelSchema.index({ destinationId: 1 });
-// hotelSchema.index({ name: 1 });
-// hotelSchema.index({ stars: 1 });
-// hotelSchema.index({ rating: 1 });
-// hotelSchema.index({ priceFrom: 1 });
 
 
-// hotelSchema.virtual('destination', {
-//   ref: 'Destination',
-//   localField: 'destinationId',
-//   foreignField: '_id',
-//   justOne: true
-// });
+hotelSchema.virtual('destination', {
+  ref: 'Destination',
+  localField: 'destinationId',
+  foreignField: '_id',
+  justOne: true
+});
 
-// Ensure virtuals are included when converting to JSON
-// hotelSchema.set('toJSON', { virtuals: true });
-// hotelSchema.set('toObject', { virtuals: true });
+
 
 // Add instance methods
-// hotelSchema.methods.getAverageRoomPrice = function() {
-//   if (!this.roomTypes || this.roomTypes.length === 0) {
-//     return this.priceFrom;
-//   }
-//   const totalPrice = this.roomTypes.reduce((sum, room) => sum + room.price, 0);
-//   return totalPrice / this.roomTypes.length;
-// };
+hotelSchema.methods.getAverageRoomPrice = function() {
+  if (!this.roomTypes || this.roomTypes.length === 0) {
+    return this.priceFrom;
+  }
+  const totalPrice = this.roomTypes.reduce((sum, room) => sum + room.price, 0);
+  return totalPrice / this.roomTypes.length;
+};
 
-// hotelSchema.methods.getFacilitiesList = function() {
-//   const allFacilities = new Set();
-//   this.roomTypes.forEach(room => {
-//     room.facilities.forEach(facility => allFacilities.add(facility));
-//   });
-//   return Array.from(allFacilities);
-// };
+hotelSchema.methods.getFacilitiesList = function() {
+  const allFacilities = new Set();
+  this.roomTypes.forEach(room => {
+    room.facilities.forEach(facility => allFacilities.add(facility));
+  });
+  return Array.from(allFacilities);
+};
 
 // Add static methods
 hotelSchema.statics.findByDestination = function(destinationId) {

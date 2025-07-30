@@ -1,0 +1,20 @@
+{
+  "name": "hotel-destination-manager",
+  "version": "1.0.0",
+  "description": "Full-stack Hotel & Destination Manager with React, Express, and MongoDB",
+  "scripts": {
+    "install-all": "npm install && cd frontend && npm install && cd ../backend && npm install",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "seed": "cd backend && node seeders/seedData.js",
+    "start": "cd backend && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": ["react", "express", "mongodb", "hotel", "destination", "fullstack"],
+  "author": "",
+  "license": "MIT"
+} 
